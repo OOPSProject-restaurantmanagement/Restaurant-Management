@@ -10,15 +10,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class Entry extends AppCompatActivity {
 
-    Button entry;
+    Button managementButton;
+    Button coustemerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_entry);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -26,17 +27,22 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Initialize Management button
-        entry = findViewById(R.id.button4);
+
+        managementButton = findViewById(R.id.button);
+
+        coustemerButton = findViewById(R.id.button2);
 
 
-
-        // Set click listener to navigate to LoginActivity
-        entry.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, Entry.class);
+        managementButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Entry.this, ManagementLogin.class);
             startActivity(intent);
         });
 
+        coustemerButton.setOnClickListener(v -> {
+                    Intent intent = new Intent(Entry.this, CustomerDashboard.class);
+                    startActivity(intent);
+                }
 
+        );
     }
 }

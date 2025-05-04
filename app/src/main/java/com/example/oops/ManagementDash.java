@@ -1,5 +1,6 @@
 package com.example.oops;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,33 +11,31 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
-
-    Button entry;
-
+public class ManagementDash extends AppCompatActivity {
+    Button menu;
+    Button orders;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_management_dash);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialize Management button
-        entry = findViewById(R.id.button4);
+        menu = findViewById(R.id.button5);
+        orders=findViewById(R.id.button6);
 
-
-
-        // Set click listener to navigate to LoginActivity
-        entry.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, Entry.class);
+        menu.setOnClickListener(v->{
+            Intent intent = new Intent( ManagementDash.this,Menuitems.class);
             startActivity(intent);
         });
-
+        orders.setOnClickListener(v->{
+            Intent intent= new Intent(ManagementDash.this,ViewOrders.class);
+            startActivity(intent);
+        });
 
     }
 }

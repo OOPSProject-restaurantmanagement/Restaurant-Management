@@ -13,6 +13,22 @@
         android:theme="@style/Theme.OOPS"
         tools:targetApi="31">
         <activity
+            android:name=".ViewOrders"
+            android:exported="false" />
+        <activity
+            android:name=".ManagementDash"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".ManagementLogin"
+            android:exported="false" />
+        <activity
+            android:name=".Entry"
+            android:exported="false"
+            android:theme="@style/Theme.OOPS" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -21,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Menuitems"/>
+        <activity android:name=".Menuitems" />
     </application>
 
 </manifest>
