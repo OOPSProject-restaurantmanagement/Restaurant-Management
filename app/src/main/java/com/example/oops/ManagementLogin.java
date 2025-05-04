@@ -67,8 +67,7 @@ public class ManagementLogin extends AppCompatActivity {
                         finish();
                     } else {
                         // Login failed
-                        Toast.makeText(ManagementLogin.this, "Authentication failed: " +
-                                task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ManagementLogin.this, "Authentication failed: " , Toast.LENGTH_LONG).show();
                     }
                 });
     }
