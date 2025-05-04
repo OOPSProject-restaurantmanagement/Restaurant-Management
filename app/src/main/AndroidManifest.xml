@@ -18,9 +18,6 @@
             android:name=".SelectedMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".selectedmenu"
-            android:exported="false" />
-        <activity
             android:name=".ViewOrders"
             android:exported="false" />
         <activity
