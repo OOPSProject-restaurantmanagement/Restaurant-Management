@@ -8,6 +8,10 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import android.widget.Button;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
     private List<Dish> dishes;
@@ -21,13 +25,15 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
         public TextView dishPriceTextView;
         public ImageView dishImageView;
         public CardView cardView;
-
+        public Button add,remove;
         public ViewHolder(View view) {
             super(view);
             dishNameTextView = view.findViewById(R.id.dish_name);
             dishPriceTextView = view.findViewById(R.id.dish_price);
             dishImageView = view.findViewById(R.id.dish_image);
             cardView = view.findViewById(R.id.card_view1);  // Make sure it matches XML ID
+            add=view.findViewById(R.id.button);
+            remove=view.findViewById(R.id.button2);
         }
     }
 
@@ -44,6 +50,12 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
         holder.dishNameTextView.setText(dish.getName());
         holder.dishPriceTextView.setText(dish.getPrice());
         holder.dishImageView.setImageResource(dish.getImageResId());
+        holder.add.setOnClickListener(v -> {
+            DatabaseReference dbRef = FirebaseDatabase.getInstance()
+                    .getReference("Selected Menu")
+                    .push();
+            dbRef.setValue(dish);
+        });
     }
 
     @Override
