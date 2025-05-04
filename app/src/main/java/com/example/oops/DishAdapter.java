@@ -1,6 +1,5 @@
 package com.example.oops;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,22 +7,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import android.widget.Button;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
 
     private List<Dish> dishes;
+    private Set<String> addedDishNames;  // Names of already added dishes
+    private Map<String, String> addedDishIds; // Map of dish names to Firebase keys
 
-    // To keep track of which dishes were added and their Firebase keys
-    private Map<Integer, String> addedDishesMap = new HashMap<>();
-
-    public DishAdapter(List<Dish> dishes) {
+    public DishAdapter(List<Dish> dishes, Set<String> addedDishNames, Map<String, String> addedDishIds) {
         this.dishes = dishes;
+        this.addedDishNames = addedDishNames;
+        this.addedDishIds = addedDishIds;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,55 +60,40 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
         holder.dishPriceTextView.setText(dish.getPrice());
         holder.dishImageView.setImageResource(dish.getImageResId());
 
-        // Set button states based on whether item is added
-        if (addedDishesMap.containsKey(position)) {
-            holder.add.setEnabled(false);
-            holder.add.setAlpha(0.5f); // dim
-            holder.remove.setEnabled(true);
-            holder.remove.setAlpha(1.0f);
-        } else {
-            holder.add.setEnabled(true);
-            holder.add.setAlpha(1.0f);
-            holder.remove.setEnabled(false);
-            holder.remove.setAlpha(0.5f);
-        }
+        boolean isAlreadyAdded = addedDishNames.contains(dish.getName());
 
-        // Add button
+        holder.add.setEnabled(!isAlreadyAdded);
+        holder.add.setAlpha(isAlreadyAdded ? 0.5f : 1.0f);
+        holder.remove.setEnabled(isAlreadyAdded);
+        holder.remove.setAlpha(isAlreadyAdded ? 1.0f : 0.5f);
+
         holder.add.setOnClickListener(v -> {
-            if (!addedDishesMap.containsKey(position)) {
+            if (!addedDishNames.contains(dish.getName())) {
                 DatabaseReference dbRef = FirebaseDatabase.getInstance()
                         .getReference("Selected Menu")
                         .push();
                 String dishId = dbRef.getKey();
                 dbRef.setValue(dish);
 
-                // Store the Firebase ID to allow removal later
-                addedDishesMap.put(position, dishId);
-
-                // Update UI
-                holder.add.setEnabled(false);
-                holder.add.setAlpha(0.5f);
-                holder.remove.setEnabled(true);
-                holder.remove.setAlpha(1.0f);
+                addedDishNames.add(dish.getName());          // Track as added
+                addedDishIds.put(dish.getName(), dishId);    // Store Firebase key
+                notifyItemChanged(holder.getAdapterPosition()); // Refresh UI
             }
         });
 
-        // Remove button
         holder.remove.setOnClickListener(v -> {
-            if (addedDishesMap.containsKey(position)) {
-                String dishId = addedDishesMap.get(position);
-                FirebaseDatabase.getInstance()
-                        .getReference("Selected Menu")
-                        .child(dishId)
-                        .removeValue();
+            if (addedDishNames.contains(dish.getName())) {
+                String id = addedDishIds.get(dish.getName());
+                if (id != null) {
+                    FirebaseDatabase.getInstance()
+                            .getReference("Selected Menu")
+                            .child(id)
+                            .removeValue();
 
-                addedDishesMap.remove(position);
-
-                // Update UI
-                holder.add.setEnabled(true);
-                holder.add.setAlpha(1.0f);
-                holder.remove.setEnabled(false);
-                holder.remove.setAlpha(0.5f);
+                    addedDishNames.remove(dish.getName());
+                    addedDishIds.remove(dish.getName());
+                    notifyItemChanged(holder.getAdapterPosition());
+                }
             }
         });
     }
