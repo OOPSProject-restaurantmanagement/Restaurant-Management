@@ -25,4 +25,7 @@
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">8dp</item>
     </style>
+    <style name="PickerBackgroundStyle">
+        <item name="android:background">#E6F0FA</item>
+    </style>
 </resources>

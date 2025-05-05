@@ -35,7 +35,7 @@ public class ManagementDash extends AppCompatActivity {
             startActivity(intent);
         });
         orders.setOnClickListener(v->{
-            Intent intent= new Intent(ManagementDash.this,SelectedMenuActivity.class);
+            Intent intent= new Intent(ManagementDash.this,vieworders.class);
             startActivity(intent);
         });
 

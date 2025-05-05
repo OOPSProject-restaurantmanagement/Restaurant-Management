@@ -15,6 +15,12 @@
         android:theme="@style/Theme.OOPS"
         tools:targetApi="31">
         <activity
+            android:name=".vieworders"
+            android:exported="false" />
+        <activity
+            android:name=".Orders"
+            android:exported="false" />
+        <activity
             android:name=".CartActivity"
             android:exported="false" />
         <activity
