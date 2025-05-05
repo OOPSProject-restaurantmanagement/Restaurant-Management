@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="238dp"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -22,15 +22,14 @@
             android:layout_height="150dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
-            app:shapeAppearanceOverlay="@style/RoundedImageView"/>
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
         <!-- Text Content -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/dish_name"
@@ -44,14 +43,68 @@
                 android:id="@+id/dish_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
                 android:textColor="#757575"
-                android:textStyle="bold"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/decreaseButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_media_previous"
+                    android:contentDescription="Decrease"
+                    android:tint="#0B5EA0"/>
+
+                <TextView
+                    android:id="@+id/quantityText"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/increaseButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_media_next"
+                    android:contentDescription="Increase"
+                    android:tint="#0B5EA0"/>
+            </LinearLayout>
+
+            <!-- Cooking Instructions -->
+            <EditText
+                android:id="@+id/instructionsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cooking instructions \nfor chef"
+                android:inputType="text"
+                android:layout_marginTop="8dp" />
+
+            <!-- Add to Cart Button -->
+            <Button
+                android:id="@+id/addToCartButton"
+                android:layout_width="175dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="12dp"
+                android:text="Add to Cart"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:backgroundTint="@color/accent_green"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
+
 
 
         </LinearLayout>

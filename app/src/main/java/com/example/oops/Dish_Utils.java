@@ -3,7 +3,7 @@ package com.example.oops;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DishUtils {
+public class Dish_Utils {
     private static final Map<String, Integer> dishImageMap = new HashMap<>();
 
     static {

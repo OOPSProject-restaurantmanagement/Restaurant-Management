@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp"
+        android:background="@color/cream_light"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            style="@style/CardViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="329dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBillTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Your Bill"
+                    android:textColor="@color/brown_dark"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/billItemsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="Total: Rs. 0"
+                    android:textColor="@color/brown_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Payment Method Tabs -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnQrPay"
+                        style="@style/CustomButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="QR"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/btnCardPay"
+                        style="@style/CustomButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:text="Card"
+                        android:textSize="20dp"/>
+                </LinearLayout>
+
+                <!-- QR Payment Layout -->
+                <LinearLayout
+                    android:id="@+id/layoutQr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="Scan QR to Pay"
+                        android:textColor="@color/brown_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/qrImageView"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@color/cream"
+                        android:contentDescription="Sample QR Code"
+                        android:padding="16dp"
+                        android:src="@drawable/sample_qr" />
+
+                    <Button
+                        android:id="@+id/btnSimulateQrPay"
+                        style="@style/CustomButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:paddingHorizontal="32dp"
+                        android:text="Simulate QR Payment"
+                        android:textSize="20dp"/>
+                </LinearLayout>
+
+                <!-- Card Payment Layout -->
+                <LinearLayout
+                    android:id="@+id/layoutCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/etCardNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/white"
+                        android:hint="Card Number"
+                        android:inputType="number"
+                        android:maxLength="16"
+                        android:padding="12dp"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etCardExpiry"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/white"
+                        android:hint="Expiry (MM/YY)"
+                        android:inputType="text"
+                        android:maxLength="5"
+                        android:padding="12dp"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etCardCVV"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@color/white"
+                        android:hint="CVV"
+                        android:inputType="numberPassword"
+                        android:maxLength="3"
+                        android:padding="12dp"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btnPay"
+                        style="@style/CustomButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:text="Pay" />
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/grey_light" />
+
+                <!-- Thank you message and rating -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/thankYouText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:text="Thank you for your order!\nWe hope to see you again."
+                        android:textColor="@color/grey_primary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Rate your experience:"
+                        android:textColor="@color/brown_dark"
+                        android:textSize="14sp" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:isIndicator="false"
+                        android:numStars="5"
+                        android:rating="5"
+                        android:stepSize="1" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

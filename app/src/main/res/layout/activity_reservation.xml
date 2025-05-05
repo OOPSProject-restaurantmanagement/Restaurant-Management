@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Table Reservation"
+            android:textSize="24sp"
+            android:textColor="#222"
+            android:gravity="center"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Number of people"
+            android:textSize="16sp"
+            android:textColor="#555"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etPartySize"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Enter number of people"
+            android:inputType="number"
+            android:textColor="#222"
+            android:padding="14dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textColor="#333"
+            android:textSize="15sp"
+            android:layout_marginBottom="6dp" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:calendarViewShown="true"
+            android:maxWidth="250dp"
+            android:spinnersShown="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="#333"
+            android:textSize="15sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="6dp" />
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="200dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reserve Table"
+            android:textColor="#fff"
+            android:backgroundTint="@color/brown_dark"
+            android:textSize="17sp"
+            android:layout_marginTop="24dp"
+            android:padding="14dp"
+            android:elevation="4dp" />
+
+    </LinearLayout>
+</ScrollView>
