@@ -96,7 +96,7 @@
             android:backgroundTint="@color/brown_dark"
             android:fontFamily="sans-serif-medium"
             android:text="Pay"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="20dp"
             android:textColor="#fff" />
     </LinearLayout>
     a
